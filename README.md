@@ -1,4 +1,5 @@
-# Reshape
+<p align="center"><img src="http://files.jenius.im/_/NpnfqKD.png" style="max-width: 100%" /></p>
+<hr />
 
 [![npm](https://img.shields.io/npm/v/reshape.svg?style=flat-square)](https://npmjs.com/package/reshape)
 [![tests](https://img.shields.io/travis/reshape/reshape.svg?style=flat-square)](https://travis-ci.org/reshape/reshape?branch=master)
