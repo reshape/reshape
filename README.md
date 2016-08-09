@@ -3,6 +3,7 @@
 
 [![npm](https://img.shields.io/npm/v/reshape.svg?style=flat-square)](https://npmjs.com/package/reshape)
 [![tests](https://img.shields.io/travis/reshape/reshape.svg?style=flat-square)](https://travis-ci.org/reshape/reshape?branch=master)
+[![dependencies](https://img.shields.io/david/reshape/reshape.svg?style=flat-square)](https://david-dm.org/reshape/reshape)
 [![coverage](https://img.shields.io/coveralls/reshape/reshape.svg?style=flat-square)](https://coveralls.io/r/reshape/reshape?branch=master)
 [![gitter](https://img.shields.io/gitter/room/reshape/reshape.svg?style=flat-square)](https://gitter.im/reshape/reshape?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge")
 

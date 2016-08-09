@@ -1,30 +1,30 @@
-# Contribution Guidelines
+# Contributing to reshape-parser
 
-## Setup for Contributing
+Hello there! First of all, thanks for being interested in reshape-parser and helping out. We all think you are awesome, and by contributing to open source projects, you are making the world a better place. That being said, there are a few ways to make the process of contributing code to reshape-parser smoother, detailed below:
 
-- Make sure you are running [node.js >= v6](https://nodejs.org/en/).
-- Make sure you have an [editorconfig plugin](http://editorconfig.org/#download) installed for your text editor
-- Make sure you have a [standard js linter](http://standardjs.com/index.html#usage) installed, tests will not pass if linting fails
-- Make sure you are familiar with [ES6](https://medium.com/sons-of-javascript/javascript-an-introduction-to-es6-1819d0d89a0f)
-- Make sure you are familiar with [test-driven development](https://www.wikiwand.com/en/Test-driven_development)
+### Filing Issues
 
-## Linting & Code Style
+If you are opening an issue about a bug, make sure that you include clear steps for how we can reproduce the problem. _If we can't reproduce it, we can't fix it_. If you are suggesting a feature, make sure your explanation is clear and detailed.
 
-> **NOTE:** This project uses [Standard.js](/feross/standard) to check for code consistency.
+### Getting Set Up
 
-Badly formatted code is; under no circumstance; allowed to hit the remote repo. We have precautions in place to prevent this, namely:
+- Clone the project down
+- Make sure [nodejs](http://nodejs.org) has been installed and is above version `6.x`
+- Run `npm install`
+- Put in work
 
-1. Automated tests will first lint the code. If the code is badly formatted, the tests will fail.
+### Testing
 
-In the case of badly formatted code, we might ask you to [squash your commits](#squashing-commits)
+This project is constantly evolving, and to ensure that things are secure and working for everyone, we need to have tests. If you are adding a new feature, please make sure to add a test for it. The test suite for this project uses [ava](https://github.com/sindresorhus/ava).
 
-## Writing Tests
+To run the test suite just use `npm test` or install ava globally and use the `ava` command to run the tests.
 
-When submitting a pull request, please be sure to add passing tests for any new
-logic.
+### Code Style
 
-We have chosen [AVA](/sindresorhus/ava) as our test harness. Since AVA runs tests concurrently, and runs individual test files in parallel ([What's the difference?](http://stackoverflow.com/questions/1050222/concurrency-vs-parallelism-what-is-the-difference)), there are some conventions we've established to prevent
-any errors when running asynchronous tests:
+This project uses ES6, interpreted directly by node.js. To keep a consistent coding style in the project, we are using [standard js](http://standardjs.com/). In order for tests to pass, all code must pass standard js linting. This project also uses an [editorconfig](http://editorconfig.org/). It will make life much easier if you have the [editorconfig plugin](http://editorconfig.org/#download) for your text editor. For any inline documentation in the code, we're using [JSDoc](http://usejsdoc.org/).
 
-1. If you have two tests that each test their own fixture, those tests should be placed in different files.
-2. AVA tests are flat in nature. If you feel the need to use `describe`-like nesting functionality (from the likes of Mocha, for example) then create a new test file and pretend it is your `describe` block.
+### Commit Cleanliness
+
+It's ok if you start out with a bunch of experimentation and your commit log isn't totally clean, but before any pull requests are accepted, we like to have a nice clean commit log. That means [well-written and clear commit messages](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html) and commits that each do something significant, rather than being typo or bug fixes.
+
+If you submit a pull request that doesn't have a clean commit log, we will ask you to clean it up before we accept. This means being familiar with rebasing - if you are not, [this guide](https://help.github.com/articles/interactive-rebase) by github should help you to get started. And if you are still confused, feel free to ask!
