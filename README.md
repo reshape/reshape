@@ -262,7 +262,7 @@ module.exports = function walk (ast) {
 }
 ```
 
-If you are not familiar with the recursion and reduction, I would strongly recommend brushing up before starting your plugin. They are extremely useful concepts across all programming languages, and especially relevant for modifying the reshape AST.
+If you are not familiar with the recursion and reduction, we would strongly recommend brushing up before starting your plugin. They are extremely useful concepts across all programming languages, and especially relevant for modifying the reshape AST.
 
 We also have a handy plugin utility that contains some methods that will help with building plugins. [Check it out](https://github.com/reshape/plugin-util) and feel free to use it while building your plugins!
 
