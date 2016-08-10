@@ -47,8 +47,8 @@ None of the options are required, any of them may be skipped.
 | Option | Description | Default |
 | ------ | ----------- | ------- |
 | **plugins** | Either a single plugin or an array of plugins to be used | `[]`
-| **parser** | Override the default parser | [reshape-parser](https://github.com/reshape/shape-parser)
-| **generator** | Override the default code generator | [reshape-render](https://github.com/reshape/reshape-render)
+| **parser** | Override the default parser | [parser](https://github.com/reshape/parser)
+| **generator** | Override the default code generator | [code-gen](https://github.com/reshape/code-gen)
 | **parserOptions** | Options to be passed to the parser |
 | **generatorOptions** | Options to be passed to the code generator |
 | **runtime** | A place to store functions executed at runtime | `{}`
