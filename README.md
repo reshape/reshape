@@ -7,7 +7,7 @@
 [![coverage](https://img.shields.io/coveralls/reshape/reshape.svg?style=flat-square)](https://coveralls.io/r/reshape/reshape?branch=master)
 [![gitter](https://img.shields.io/gitter/room/reshape/reshape.svg?style=flat-square)](https://gitter.im/reshape/reshape?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge")
 
-Reshape is a tool for transforming HTML with javascript plugins. Reshape parses input html into an [abstract syntax tree](#reshape-ast) (AST). Plugins receive the AST, can transform it as they wish, and return it to be passed to the next plugin. When all plugins have finished, reshape transforms the AST into a javascript function which, when called, will produce a string of html.
+Reshape is a tool for transforming HTML with JavaScript plugins. Reshape parses input HTML into an [abstract syntax tree](#reshape-ast) (AST). Plugins receive the AST, can transform it as they wish, and return it to be passed to the next plugin. When all plugins have finished, reshape transforms the AST into a JavaScript function which, when called, will produce a string of HTML.
 
 ## Installation
 
@@ -15,7 +15,7 @@ Reshape is a tool for transforming HTML with javascript plugins. Reshape parses 
 
 ## Usage
 
-Initialize `reshape` with some plugins you'd like to use and [any other options](#options), then call `process` with the html you'd like to process. For example:
+Initialize `reshape` with some plugins you'd like to use and [any other options](#options), then call `process` with the HTML you'd like to process. For example:
 
 ```js
 const reshape = require('reshape')
@@ -38,7 +38,7 @@ reshape({ plugins: customElements })
     })
 ```
 
-Reshape generates a javascript template as its output, which can be called to product text. This means that reshape can generate static html as well as javascript templates for the front-end.
+Reshape generates a JavaScript template as its output, which can be called to product text. This means that reshape can generate static HTML as well as JavaScript templates for the front-end.
 
 ### Options
 
@@ -47,8 +47,8 @@ None of the options are required, any of them may be skipped.
 | Option | Description | Default |
 | ------ | ----------- | ------- |
 | **plugins** | Either a single plugin or an array of plugins to be used | `[]`
-| **parser** | Override the default parser | [reshape-parser](https://github.com/reshape/reshape-parser)
-| **generator** | Override the default code generator | [reshape-render](https://github.com/reshape/reshape-render)
+| **parser** | Override the default parser | [parser](https://github.com/reshape/parser)
+| **generator** | Override the default code generator | [code-gen](https://github.com/reshape/code-gen)
 | **parserOptions** | Options to be passed to the parser |
 | **generatorOptions** | Options to be passed to the code generator |
 | **runtime** | A place to store functions executed at runtime | `{}`
@@ -87,7 +87,7 @@ Here, the default plugins will apply to all compiles, except for the second, in 
 
 ## Reshape AST
 
-Plugins act on an [abstract syntax tree](https://www.wikiwand.com/en/Abstract_syntax_tree) which represents the html structure, but is easier to search and modify than plain text. It is a very simple [recursive tree structure](https://www.wikiwand.com/en/Tree_(data_structure)). Each node in the tree is represented by an object, which is required to have a `type` property. The default code generator supports three data types:
+Plugins act on an [abstract syntax tree](https://www.wikiwand.com/en/Abstract_syntax_tree) which represents the HTML structure, but is easier to search and modify than plain text. It is a very simple [recursive tree structure](https://www.wikiwand.com/en/Tree_(data_structure)). Each node in the tree is represented by an object, which is required to have a `type` property. The default code generator supports three data types:
 
 #### String
 
@@ -104,7 +104,7 @@ A string of plain text. The `content` property contains the string.
 
 #### Tag
 
-An html tag. Must have a `name` property with the tag name. Can optionally have an `attributes` property, which is an object with the key being a `string`, and the value being either a `string` or `code` type, or an array of multiple. Can also optionally have a `content` property, which can contain a full AST.
+An HTML tag. Must have a `name` property with the tag name. Can optionally have an `attributes` property, which is an object with the key being a `string`, and the value being either a `string` or `code` type, or an array of multiple. Can also optionally have a `content` property, which can contain a full AST.
 
 ```js
 {
@@ -133,7 +133,7 @@ A piece of code to be evaluated at runtime. Code can access any locals that the 
 }
 ```
 
-Sometimes there's a situation where you want code to surround some html, in order to control or change its appearance, for example a conditional statement. When this is the case, a special helper can be used within your code so that you can avoid needing to manually run the code generator over the contained nodes. A quick example:
+Sometimes there's a situation where you want code to surround some HTML, in order to control or change its appearance, for example a conditional statement. When this is the case, a special helper can be used within your code so that you can avoid needing to manually run the code generator over the contained nodes. A quick example:
 
 ```js
 {
@@ -152,7 +152,7 @@ Sometimes there's a situation where you want code to surround some html, in orde
 
 In this case, the code generator will parse the nodes in the `nodes` property and inject them at the appropriate locations in your code block. Nodes in the `nodes` property can be full ASTs, and even include more `code` nodes. Note that the `nodes` property is represented inside your code's content as `__nodes` to prevent any potential name conflicts.
 
-Code should be expected to run in any javascript environment, from node to the browser, and in any version. As such, care should be taken to make code snippets as simple and widely-compatible as possible.
+Code should be expected to run in any JavaScript environment, from node to the browser, and in any version. As such, care should be taken to make code snippets as simple and widely-compatible as possible.
 
 ---
 
@@ -161,7 +161,7 @@ Additionally, all tree nodes should include information about their source, so t
 - `line`: the line in the original source
 - `col`: the column in the original source
 
-There is a strongly encouraged `filename` option available through the reshape options. This in combination with the `line` and `col` information can provide accurate debugging. However, if the original source comes from a different file, you can also provide a `filename` property on the tree node so that it is accurate. For example, if using `reshape-include` to include code from a different file, this would be necessary.
+There is a strongly encouraged `filename` option available through the [reshape options](#options). This in combination with the `line` and `col` information can provide accurate debugging. However, if the original source comes from a different file, you can also provide a `filename` property on the tree node so that it is accurate. For example, if using `reshape-include` to include code from a different file, this would be necessary.
 
 #### Example
 
@@ -216,7 +216,7 @@ After processing by the `reshape-expressions` plugin, you would get the followin
 ]
 ```
 
-> NOTE: Expression parsing and the `code` node type are used entirely by plugins, reshape does not parse any html as a `code` node by default.
+> NOTE: Expression parsing and the `code` node type are used entirely by plugins, reshape does not parse any HTML as a `code` node by default.
 
 Which would then be parsed into this function by the code generator:
 
@@ -235,7 +235,7 @@ templateFunction({ planet: 'world' })
 // </div>
 ```
 
-## Writing A Plugin
+## Writing a Plugin
 
 HTML is a simple language, and because of this, reshape's AST is also quite simple. Plugins are represented by a function, which takes two parameters, the `ast` as described above, and an optional context object, which we will discuss below. All plugins must return an AST. Here's a minimal plugin:
 
@@ -262,7 +262,7 @@ module.exports = function walk (ast) {
 }
 ```
 
-If you are not familiar with the recursion and reduction, I would strongly recommend brushing up before starting your plugin. They are extremely useful concepts across all programming languages, and especially relevant for modifying the reshape AST.
+If you are not familiar with the recursion and reduction, we would strongly recommend brushing up before starting your plugin. They are extremely useful concepts across all programming languages, and especially relevant for modifying the reshape AST.
 
 We also have a handy plugin utility that contains some methods that will help with building plugins. [Check it out](https://github.com/reshape/plugin-util) and feel free to use it while building your plugins!
 
@@ -285,7 +285,7 @@ This plugin would do nothing except for logging out reshape's options. While it 
 
 ### The Runtime
 
-There are two stages in which code runs in a reshape template function. The first stage we call "compile time", and this is when the html is parsed, plugins do their things, and then a function is returned to the user. Second we call "runtime" is when the user actually executes that function.
+There are two stages in which code runs in a reshape template function. The first stage we call "compile time", and this is when the HTML is parsed, plugins do their things, and then a function is returned to the user. Second we call "runtime" is when the user actually executes that function.
 
 ```js
 // STAGE 1 - COMPILE TIME: parsing html into a template function
@@ -300,7 +300,7 @@ reshape([/*...plugins.. */])
 
 In the `opts` object you can find a property called `runtime`, and chances are it's an empty object. The runtime object is a place where functions can be stored that are utilized during runtime.
 
-For example, [reshape-expressions](https://github.com/reshape/expressions) escapes html by default inside of its expression delimiters so that if you type in `You can make a tag bold with <strong>`, it actually outputs that text, instead of a literal `<strong>` html tag. But since expressions are passed in by the user at runtime, the escaping must happen then. While it would be possible for the plugin to include the code for escaping along with every single `code` node, this would be a huge waste of space – it would be much easier to just have one place that the escape function could be called from at runtime. This is the purpose of the runtime object.
+For example, [reshape-expressions](https://github.com/reshape/expressions) escapes HTML by default inside of its expression delimiters so that if you type in `You can make a tag bold with <strong>`, it actually outputs that text, instead of a literal `<strong>` HTML tag. But since expressions are passed in by the user at runtime, the escaping must happen then. While it would be possible for the plugin to include the code for escaping along with every single `code` node, this would be a huge waste of space – it would be much easier to just have one place that the escape function could be called from at runtime. This is the purpose of the runtime object.
 
 Within a plugin, if you'd like to add a function to the runtime, you can do this directly using `opts.runtime`. Be careful to choose a unique name and not overwrite other plugins' runtime functions. To use a runtime function within your code, you can use the `__runtime` property, which will be transformed by the code generator to the correct name so that it will work in whatever environment it's used in. For example:
 
