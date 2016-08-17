@@ -110,6 +110,15 @@ test('plugin error within a plugin', (t) => {
   })
 })
 
+test('parser error handled via promise', (t) => {
+  return process('sugarml_invalid.html', {
+    filename: path.join(fixtures, 'sugarml_invalid.html'),
+    parser: sugarml
+  }).catch((err) => {
+    t.truthy(err.toString().match(/Cannot parse character "<"/))
+  })
+})
+
 function process (file, config, config2) {
   const html = fs.readFileSync(path.join(fixtures, file), 'utf8')
   return reshape(config).process(html, config2)
