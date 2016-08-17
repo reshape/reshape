@@ -1,7 +1,7 @@
 {
   "name": "reshape",
   "description": "A plugin-based html template engine",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "author": "Jeff Escalante",
   "ava": {
     "verbose": "true",
