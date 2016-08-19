@@ -69,12 +69,12 @@ test('multi plugin', (t) => {
 test('error', (t) => {
   const err = new ReshapeError({
     src: '<p>{{ foo -}</p>',
-    location: { line: 1, col: 10 },
+    location: { line: 1, col: 11 },
     filename: '/Sites/foo/index.html',
     message: 'invalid close delimiter',
     plugin: 'reshape-expressions'
   }).toString()
-  t.truthy(err === 'ReshapeError: invalid close delimiter\nFrom Plugin: reshape-expressions\nLocation: /Sites/foo/index.html:1:10\n\n> 1 | <p>{{ foo -}</p>\n    |          ^\n')
+  t.is(err, 'ReshapeError: invalid close delimiter\nFrom Plugin: reshape-expressions\nLocation: /Sites/foo/index.html:1:11\n\n   0. |\n > 1. | <p>{{ foo -}</p>\n      |           ^\n   2. |\n')
 })
 
 test('plugin error', (t) => {
@@ -87,7 +87,7 @@ test('plugin error', (t) => {
     plugin: 'testPlugin',
     message: 'test'
   }).toString()
-  t.truthy(err === 'ReshapePluginError: test\nFrom Plugin: testPlugin\nLocation: /foo/bar/wow:1:4\n\n> 1 | foo bar\n    |    ^\n')
+  t.is(err, 'ReshapePluginError: test\nFrom Plugin: testPlugin\nLocation: /foo/bar/wow:1:4\n\n   0. |\n > 1. | foo bar\n      |    ^\n   2. |\n')
 })
 
 test('plugin error, no plugin name, filename, source', (t) => {
@@ -96,27 +96,23 @@ test('plugin error, no plugin name, filename, source', (t) => {
     location: { line: 1, col: 4 },
     message: 'test'
   }).toString()
-  t.truthy(err === 'ReshapePluginError: test\nLocation: [no filename]:1:4')
+  t.is(err, 'ReshapePluginError: test\nLocation: [no filename]:1:4')
 })
 
 test('plugin error within a plugin', (t) => {
-  return process('basic.html', {
+  let err = process('basic.html', {
     filename: path.join(fixtures, 'basic.html'),
     plugins: [errorPlugin]
-  }).then(() => {
-    t.fail('plugin should throw an error and it doesn\'t')
-  }).catch((res) => {
-    t.truthy(res.toString().match(/ReshapePluginError:\sGreetings\snot\spermitted\nFrom\sPlugin:\sNoGreetingsPlugin\nLocation:\n.*reshape\/test\/fixtures\/basic\.html:1:9\n\n>\s1\s|\s<custom>hi<\/custom>\n\s{4}|\s{9}\^\n\s\s2 | \n/))
   })
+  t.throws(err, /ReshapePluginError:\sGreetings\snot\spermitted\nFrom\sPlugin:\sNoGreetingsPlugin\nLocation:\n.*reshape\/test\/fixtures\/basic\.html:1:9\n\n>\s1\s|\s<custom>hi<\/custom>\n\s{4}|\s{9}\^\n\s\s2 | \n/)
 })
 
 test('parser error handled via promise', (t) => {
-  return process('sugarml_invalid.html', {
+  let err = process('sugarml_invalid.html', {
     filename: path.join(fixtures, 'sugarml_invalid.html'),
     parser: sugarml
-  }).catch((err) => {
-    t.truthy(err.toString().match(/Cannot parse character "<"/))
   })
+  t.throws(err, /Cannot parse character "<"/)
 })
 
 function process (file, config, config2) {
