@@ -30,7 +30,7 @@
     "reshape-expressions": "0.1.0",
     "snazzy": "^4.0.1",
     "standard": "^7.1.2",
-    "sugarml": "0.2.1"
+    "sugarml": "0.2.2"
   },
   "engines": {
     "node": ">=6"
