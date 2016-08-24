@@ -29,7 +29,7 @@
     "reshape-custom-elements": "0.1.0",
     "reshape-expressions": "0.1.0",
     "snazzy": "^4.0.1",
-    "standard": "^7.1.2",
+    "standard": "^8.0.0",
     "sugarml": "0.2.2"
   },
   "engines": {
