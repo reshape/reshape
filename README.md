@@ -266,7 +266,7 @@ If you are not familiar with the recursion and reduction, we would strongly reco
 
 We also have a handy plugin utility that contains some methods that will help with building plugins. [Check it out](https://github.com/reshape/plugin-util) and feel free to use it while building your plugins!
 
-Finally, when you publish a plugin, make sure to use `reshape-plugin` as an npm keyword so that other users can find it, and so it will be added [to our plugin directory](https://npms.io/search?term=reshapeplugin).
+Finally, when you publish a plugin, make sure to use `reshape-plugin` as an npm keyword so that other users can find it, and so it will be added [to our plugin directory](http://plugins.reshape.ml).
 
 ### Accessing Options
 
