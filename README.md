@@ -9,6 +9,15 @@
 
 Reshape is a tool for transforming HTML with JavaScript plugins. Reshape parses input HTML into an [abstract syntax tree](#reshape-ast) (AST). Plugins receive the AST, can transform it as they wish, and return it to be passed to the next plugin. When all plugins have finished, reshape transforms the AST into a JavaScript function which, when called, will produce a string of HTML.
 
+## Table of Contents
+
+- [Installation](#installation)
+- [Basic Example](#usage)
+- [Configuration Options](#options)
+- [The Reshape AST](#reshape-ast)
+- [Writing Plugins](#writing-a-plugin)
+- [License, Contributing, Etc](#etc)
+
 ## Installation
 
 `npm i reshape --save`
@@ -19,22 +28,25 @@ Initialize `reshape` with some plugins you'd like to use and [any other options]
 
 ```js
 const reshape = require('reshape')
-const customElements = require('reshape-custom-elements')
+const expressions = require('reshape-expressions')
+const include = require('reshape-include')
 
 let html = `
-    <myComponent>
-      <myTitle>Super Title</myTitle>
-      <myText>Awesome Text</myText>
-    </myComponent>`
+    <section>
+      <h1>Reshape is so cool!</h1>
+      <p>Hello, {{ planet}}!</p>
+      include(src='_partial.html')
+    </section>`
 
-reshape({ plugins: customElements })
+reshape({ plugins: [expressions(), include()] })
     .process(html)
     .then((result) => {
-        console.log(result.output())
-        // <div class="myComponent">
-        //  <div class="myTitle">Super Title</div>
-        //  <div class="myText">Awesome Text</div>
-        // </div>
+        console.log(result.output({ planet: 'world' }))
+        // <section>
+        //  <h1>Reshape is so cool!</h1>
+        //  <p>Hello, world!</p>
+        //  <p>Hello from a partial!</p>
+        // </section>
     })
 ```
 
