@@ -55,7 +55,7 @@ reshape({ plugins: [expressions(), include()] })
     })
 ```
 
-Reshape generates a JavaScript template as its output, which can be called to product text. This means that reshape can generate static HTML as well as JavaScript templates for the front-end.
+Reshape generates a JavaScript template as its output, which can be called (with optional locals) to produce a string. This means that reshape can generate static HTML as well as JavaScript templates for the front-end.
 
 ### Options
 
@@ -90,7 +90,7 @@ reshape({ parser: sugarml })
   })
 ```
 
-Options can also be passed either to the `reshape` constructor as above, or to the `process` method. Options passed to `reshape` will persist between compiles, where options passed to `process` will only apply for that particular compile. Options passed to the `process` plugin will be deep-merged with existing options and take priority if there is a conflict. For example:
+Options can also be passed either to the `reshape` constructor as above, or to the `process` method. Options passed to `reshape` will persist between compiles, where options passed to `process` will only apply for that particular compile. Options passed to `process` will be deep-merged with existing options and take priority if there is a conflict. For example:
 
 ```js
 const ph = reshape({ plugins: [example(), anotherExample()] })
@@ -100,7 +100,7 @@ ph.process(otherHtml, { filename: 'bar.html', plugins: [alternatePlugin()] })
 ph.process(evenMoreHtml, { parser: someParser })
 ```
 
-Here, the default plugins will apply to all compiles, except for the second, in which we override them locally. All other options will be merged in and applied only to their individual compiles.
+Here, the default plugins applied to `ph` at the top will apply to all compiles, except for the second, in which we override them locally. All other options will be merged in and applied only to their individual compiles.
 
 ## Reshape AST
 
@@ -114,8 +114,7 @@ A string of plain text. The `content` property contains the string.
 {
   type: 'string',
   content: 'hello world!',
-  line: 1,
-  col: 1
+  location: { line: 1, col: 1 }
 }
 ```
 
@@ -132,8 +131,7 @@ An HTML tag. Must have a `name` property with the tag name. Can optionally have 
     'data-foo': [{ type: 'string', content: 'bar', line: 1, col: 18 }],
   },
   content: [/* full ast */],
-  line: 1,
-  col: 1
+  location: { line: 1, col: 1 }
 }
 ```
 
@@ -145,8 +143,7 @@ A piece of code to be evaluated at runtime. Code can access any locals that the 
 {
   type: 'code',
   content: 'locals.foo',
-  line: 1,
-  col: 1
+  location: { line: 1, col: 1 }
 }
 ```
 
@@ -161,8 +158,8 @@ Sometimes there's a situation where you want code to surround some HTML, in orde
     __nodes[1]
   }`,
   nodes: [
-    { type: 'string', content: 'shown!', line: 1, col: 1 },
-    { type: 'string', content: 'hidden!', line: 2, col: 1}
+    { type: 'string', content: 'shown!', location: { line: 1, col: 1 } },
+    { type: 'string', content: 'hidden!', location: { line: 2, col: 1 } }
   ]
 }
 ```
@@ -173,7 +170,7 @@ Code should be expected to run in any JavaScript environment, from node to the b
 
 ---
 
-Additionally, all tree nodes should include information about their source, so that errors are clear, and source maps can be accurate. Each tree node must also have two additional properties:
+Additionally, all tree nodes should include information about their source, so that errors are clear, and source maps can be accurate. Each tree node must also have two additional properties under the `location` property:
 
 - `line`: the line in the original source
 - `col`: the column in the original source
@@ -201,8 +198,7 @@ After processing by the `reshape-expressions` plugin, you would get the followin
       id: [{
         type: 'string',
         content: 'main',
-        line: 1,
-        col: 9
+        location: { line: 1, col: 19}
       }]
     },
     content: [
@@ -213,29 +209,25 @@ After processing by the `reshape-expressions` plugin, you would get the followin
           {
             type: 'string',
             content: 'Hello ',
-            line: 2,
-            col: 6
+            location: { line: 2, col: 6 }
           },
           {
             type: 'code',
             content: 'locals.planet',
-            line: 2,
-            col: 13
+            location: { line: 2, col: 13 }
           }
         ],
-        line: 2,
-        col: 3
+        location: { line: 2, col: 3 }
       }
     ],
-    line: 1
-    col: 1
+    location: { line: 1, col: 1 }
   }
 ]
 ```
 
 > NOTE: Expression parsing and the `code` node type are used entirely by plugins, reshape does not parse any HTML as a `code` node by default.
 
-Which would then be parsed into this function by the code generator:
+Which would then be parsed into a function like this by the code generator:
 
 ```js
 ;(function (locals) {
@@ -252,6 +244,8 @@ templateFunction({ planet: 'world' })
 // </div>
 ```
 
+> **NOTE**: The code generator produces a function that's a little different than the one above, it was just written this way for clarity. They do the same thing when executed though.
+
 ## Writing a Plugin
 
 HTML is a simple language, and because of this, reshape's AST is also quite simple. Plugins are represented by a function, which takes two parameters, the `ast` as described above, and an optional context object, which we will discuss below. All plugins must return an AST. Here's a minimal plugin:
@@ -267,11 +261,11 @@ Now let's say we wanted to make a plugin that removes any tag with a `removeme` 
 
 ```js
 module.exports = function walk (ast) {
-  ast.reduce((m, v, k) => {
+  return ast.reduce((m, v, k) => {
     // return without adding to the memo object if we have the 'removeme' class
     if (v.attrs && v.attrs.class[0].content === 'removeme') { return m }
     // if we have contents, recurse
-    if (v.contents) { v.contents = walk(v.contents) }
+    if (v.type === 'tag' && v.contents) { v.contents = walk(v.contents) }
     // otherwise add the node to the memo and return
     m[k] = v
     return m
@@ -302,7 +296,7 @@ This plugin would do nothing except for logging out reshape's options. While it 
 
 ### The Runtime
 
-There are two stages in which code runs in a reshape template function. The first stage we call "compile time", and this is when the HTML is parsed, plugins do their things, and then a function is returned to the user. Second we call "runtime" is when the user actually executes that function.
+There are two stages in which code runs in a reshape template function. The first stage we call "compile time", and this is when the HTML is parsed, plugins do their things, and then a function is returned to the user. The second we call "runtime", and this is when the user actually executes that function.
 
 ```js
 // STAGE 1 - COMPILE TIME: parsing html into a template function
@@ -327,14 +321,15 @@ module.exports = function (ast, opts) {
   ast.push({
     type: 'code',
     content: '__runtime.escapeHtml(\'<strong>\')',
-    line: 1,
-    col: 1
+    location: { line: 1, col: 1 }
   })
   return ast
 }
 ```
 
 This is pseudo-code and is just for demonstration purposes, but you can see what's happening here. A function is defined on the `opts.runtime` object, and used within the code later with `__runtime`. This way, you can avoid repetition when you need to be executing runtime code from a plugin.
+
+Also please note that if you do add a function to the `runtime` object, that function must be serializable using `func.toString()`. This is the case because in order to use runtime functions client-side, the runtime must be added to the website as plaintext.
 
 ### Error Handling
 
@@ -360,8 +355,8 @@ ReshapePluginError: First element has a 'doge' class!
 From Plugin: NoDogePlugin
 Location: /Users/me/Desktop/test-project/index.html:1:3
 
-<p class='doge'>foo bar</p>
-   ^
+1 | <p class='doge'>foo bar</p>
+> |   ^
 
 ...rest of the error trace...
 ```
