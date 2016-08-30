@@ -16,11 +16,16 @@ Reshape is a tool for transforming HTML with JavaScript plugins. Reshape parses 
 - [Configuration Options](#options)
 - [The Reshape AST](#reshape-ast)
 - [Writing Plugins](#writing-a-plugin)
+- [Plugin Directory](http://plugins.reshape.ml)
 - [License, Contributing, Etc](#etc)
 
 ## Installation
 
-`npm i reshape --save`
+Reshape can be installed through npm, and requires node v6 or higher.
+
+```sh
+npm i reshape --save
+```
 
 ## Usage
 
