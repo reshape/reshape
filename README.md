@@ -367,6 +367,6 @@ By default, the source and filename will be set by the options passed to `reshap
 
 ## Etc
 
-- Reshape is licensed under [MIT](LICENCE.md)
+- Reshape is licensed under [MIT](LICENSE.md)
 - See our [contributing guidelines](contributing.md)
 - Huge credit to [posthtml](https://github.com/posthtml/posthtml) for providing the inspiration for this project and the foundational ideas upon which this code was built 💖
