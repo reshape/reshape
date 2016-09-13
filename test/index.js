@@ -74,7 +74,7 @@ test('error', (t) => {
     message: 'invalid close delimiter',
     plugin: 'reshape-expressions'
   }).toString()
-  t.is(err, 'ReshapeError: invalid close delimiter\nFrom Plugin: reshape-expressions\nLocation: /Sites/foo/index.html:1:11\n\n   0. |\n > 1. | <p>{{ foo -}</p>\n      |           ^\n   2. |\n')
+  t.truthy(err.match(/ReshapeError:\sinvalid close delimiter\nFrom\sPlugin:\sreshape-expressions\nLocation:\s.*index.html:1:11\n\s2}\s{3}0\s|\n\s>\s1\s|\s<p>{{ foo -}<\/p>\n\s{5}|\s{11}^\n\s{3}2\s|\n/))
 })
 
 test('plugin error', (t) => {
@@ -87,7 +87,7 @@ test('plugin error', (t) => {
     plugin: 'testPlugin',
     message: 'test'
   }).toString()
-  t.is(err, 'ReshapePluginError: test\nFrom Plugin: testPlugin\nLocation: /foo/bar/wow:1:4\n\n   0. |\n > 1. | foo bar\n      |    ^\n   2. |\n')
+  t.truthy(err.match(/ReshapePluginError:\stest\nFrom\sPlugin:\stestPlugin\nLocation:\s\/foo\/bar\/wow:1:4\n{2}\s{3}0\s|\n\s>\s1\s|\sfoo\sbar\n\s{5}|\s{4}^\n\s{3}2\s|\n/))
 })
 
 test('plugin error, no plugin name, filename, source', (t) => {
