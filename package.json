@@ -23,14 +23,14 @@
   "devDependencies": {
     "ava": "^0.16.0",
     "coveralls": "^2.11.11",
-    "nyc": "^7.0.0",
+    "nyc": "^8.1.0",
     "posthtml-parser": "^0.2.0",
     "posthtml-render": "^1.0.5",
     "reshape-custom-elements": "0.1.0",
     "reshape-expressions": "0.1.0",
     "snazzy": "^5.0.0",
     "standard": "^8.0.0",
-    "sugarml": "0.3.0"
+    "sugarml": "^0.4.0"
   },
   "engines": {
     "node": ">=6"
