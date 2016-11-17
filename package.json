@@ -21,7 +21,7 @@
     "when": "^3.7.7"
   },
   "devDependencies": {
-    "ava": "^0.16.0",
+    "ava": "^0.17.0",
     "coveralls": "^2.11.11",
     "nyc": "^9.0.1",
     "posthtml-parser": "^0.2.0",
