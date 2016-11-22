@@ -13,7 +13,7 @@
     "url": "https://github.com/reshape/reshape/issues"
   },
   "dependencies": {
-    "code-frame": "^4.0.0",
+    "code-frame": "^5.0.0",
     "joi": "^10.0.0",
     "lodash.merge": "^4.4.0",
     "reshape-code-gen": "^0.1.0",
