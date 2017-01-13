@@ -50,6 +50,7 @@
     "coverage": "nyc ava && nyc report --reporter=html && open ./coverage/index.html",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "lint": "standard | snazzy",
-    "test": "npm run lint && nyc ava"
+    "test": "npm run lint && nyc ava",
+    "benchmark": "matcha"
   }
 }
