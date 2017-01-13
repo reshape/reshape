@@ -1,6 +1,7 @@
 node_modules/
 coverage/
 test/
+benchmark/
 .gitignore
 .travis.yml
 npm-debug.log

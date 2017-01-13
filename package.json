@@ -23,6 +23,7 @@
   "devDependencies": {
     "ava": "^0.17.0",
     "coveralls": "^2.11.11",
+    "matcha": "^0.7.0",
     "nyc": "^10.0.0",
     "posthtml-parser": "^0.2.0",
     "posthtml-render": "^1.0.5",
