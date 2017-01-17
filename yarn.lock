@@ -3242,9 +3242,9 @@ require-uncached@^1.0.2:
     caller-path "^0.1.0"
     resolve-from "^1.0.0"
 
-reshape-code-gen@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/reshape-code-gen/-/reshape-code-gen-0.1.0.tgz#9c829a43ef047f7d82a5deca472255c9a40b706f"
+reshape-code-gen@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/reshape-code-gen/-/reshape-code-gen-0.2.0.tgz#dbaa653f2f78ba95309274e9539099ee530642c4"
   dependencies:
     objectfn "^2.0.0"
     with "^5.1.1"
