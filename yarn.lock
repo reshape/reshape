@@ -1109,12 +1109,6 @@ co@^4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/co/-/co-4.6.0.tgz#6ea6bdf3d853ae54ccb8e47bfa0bf3f9031fb184"
 
-code-frame@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/code-frame/-/code-frame-4.0.0.tgz#fb02a19d9e6c8404addee87b1672142919d2ec64"
-  dependencies:
-    left-pad "^1.1.1"
-
 code-frame@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/code-frame/-/code-frame-5.0.0.tgz#40030707ec46e1d99d5e52dc9f357fcad90d993d"
@@ -2279,9 +2273,9 @@ jodid25519@^1.0.0:
   dependencies:
     jsbn "~0.1.0"
 
-joi@^10.0.0:
-  version "10.1.0"
-  resolved "https://registry.yarnpkg.com/joi/-/joi-10.1.0.tgz#8c3a87577c159ffeba129a5054f3238f9efd7159"
+joi@^10.2.0:
+  version "10.2.0"
+  resolved "https://registry.yarnpkg.com/joi/-/joi-10.2.0.tgz#2c9dba08240d453e58145667f0d5006de527e328"
   dependencies:
     hoek "4.x.x"
     isemail "2.x.x"
@@ -2388,7 +2382,7 @@ lcov-parse@0.0.10:
   version "0.0.10"
   resolved "https://registry.yarnpkg.com/lcov-parse/-/lcov-parse-0.0.10.tgz#1b0b8ff9ac9c7889250582b70b71315d9da6d9a3"
 
-left-pad@^1.1.1, left-pad@^1.1.3:
+left-pad@^1.1.3:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/left-pad/-/left-pad-1.1.3.tgz#612f61c033f3a9e08e939f1caebeea41b6f3199a"
 
@@ -3271,7 +3265,7 @@ reshape-parser@^0.2.1:
   dependencies:
     parse5 "^2.1.5"
 
-"reshape-plugin-util@github:reshape/plugin-util":
+reshape-plugin-util@reshape/plugin-util:
   version "0.2.1"
   resolved "https://codeload.github.com/reshape/plugin-util/tar.gz/f6a9abd2732add0fc7b726411b19f553e889e802"
   dependencies:
@@ -3552,11 +3546,11 @@ strip-json-comments@~1.0.1, strip-json-comments@~1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-1.0.4.tgz#1e15fbcac97d3ee99bf2d73b4c656b082bbafb91"
 
-sugarml@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/sugarml/-/sugarml-0.4.0.tgz#11d9f1c2af5bd0c140088f006f0daf1e0da21a20"
+sugarml@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/sugarml/-/sugarml-0.5.0.tgz#f4f04b7a59d12ae1a64fc733b67cd8575c25a8c8"
   dependencies:
-    code-frame "^4.0.0"
+    code-frame "^5.0.0"
 
 supports-color@^0.2.0:
   version "0.2.0"

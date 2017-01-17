@@ -7,3 +7,4 @@ benchmark/
 npm-debug.log
 .nyc_output
 logo.svg
+yarn.lock
