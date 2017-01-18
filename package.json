@@ -16,7 +16,7 @@
     "code-frame": "^5.0.0",
     "joi": "^10.2.0",
     "lodash.merge": "^4.4.0",
-    "reshape-code-gen": "^0.2.0",
+    "reshape-code-gen": "^0.2.1",
     "reshape-parser": "^0.2.1",
     "when": "^3.7.7"
   },
