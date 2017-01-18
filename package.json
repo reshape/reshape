@@ -16,7 +16,7 @@
     "code-frame": "^5.0.0",
     "joi": "^10.2.0",
     "lodash.merge": "^4.4.0",
-    "reshape-code-gen": "^0.2.0",
+    "reshape-code-gen": "^0.2.1",
     "reshape-parser": "^0.2.1",
     "when": "^3.7.7"
   },
@@ -24,7 +24,7 @@
     "ava": "^0.17.0",
     "coveralls": "^2.11.11",
     "matcha": "^0.7.0",
-    "nyc": "^10.0.0",
+    "nyc": "^10.1.2",
     "posthtml-parser": "^0.2.0",
     "posthtml-render": "^1.0.5",
     "reshape-custom-elements": "0.1.0",
