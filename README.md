@@ -11,6 +11,8 @@ Reshape is a tool for transforming HTML with JavaScript plugins. Reshape parses 
 
 ## Table of Contents
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/reshape/reshape.svg)](https://greenkeeper.io/)
+
 - [Installation](#installation)
 - [Basic Example](#usage)
 - [Configuration Options](#options)
