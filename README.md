@@ -300,7 +300,7 @@ There are two stages in which code runs in a reshape template function. The firs
 
 ```js
 // STAGE 1 - COMPILE TIME: parsing html into a template function
-reshape([/*...plugins.. */])
+reshape({/*...options.. */})
   .process(someHtml)
   .then((res) => {
     console.log(res.output) // [Function]
