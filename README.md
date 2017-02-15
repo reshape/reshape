@@ -40,7 +40,7 @@ let html = `
     <section>
       <h1>Reshape is so cool!</h1>
       <p>Hello, {{ planet}}!</p>
-      include(src='_partial.html')
+      <include src='_partial.html' />
     </section>`
 
 reshape({ plugins: [expressions(), include()] })
