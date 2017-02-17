@@ -28,7 +28,7 @@
     "posthtml-parser": "^0.2.0",
     "posthtml-render": "^1.0.5",
     "reshape-custom-elements": "0.1.0",
-    "reshape-expressions": "0.1.4",
+    "reshape-expressions": "0.1.5",
     "snazzy": "^6.0.0",
     "standard": "^8.0.0",
     "sugarml": "^0.5.0"
