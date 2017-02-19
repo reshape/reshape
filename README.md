@@ -27,6 +27,8 @@ Reshape can be installed through npm, and requires node v6 or higher.
 npm i reshape --save
 ```
 
+Reshape is a javascript library -- if you are looking for a CLI interface, check out [reshape-cli](https://github.com/GitScrum/reshape-cli)!
+
 ## Usage
 
 Initialize `reshape` with some plugins you'd like to use and [any other options](#options), then call `process` with the HTML you'd like to process. For example:
