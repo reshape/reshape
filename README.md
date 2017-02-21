@@ -122,13 +122,13 @@ A string of plain text. The `content` property contains the string.
 
 #### Tag
 
-An HTML tag. Must have a `name` property with the tag name. Can optionally have an `attributes` property, which is an object with the key being a `string`, and the value being either a `string` or `code` type, or an array of multiple. Can also optionally have a `content` property, which can contain a full AST.
+An HTML tag. Must have a `name` property with the tag name. Can optionally have an `attrs` property, which is an object with the key being a `string`, and the value being either a `string` or `code` type, or an array of multiple. Can also optionally have a `content` property, which can contain a full AST.
 
 ```js
 {
   type: 'tag',
   name: 'p',
-  attributes: {
+  attrs: {
     class: [{ type: 'string', content: 'test', line: 1, col: 5 }],
     'data-foo': [{ type: 'string', content: 'bar', line: 1, col: 18 }],
   },
@@ -196,7 +196,7 @@ After processing by the `reshape-expressions` plugin, you would get the followin
   {
     type: 'tag',
     name: 'div',
-    attributes: {
+    attrs: {
       id: [{
         type: 'string',
         content: 'main',
