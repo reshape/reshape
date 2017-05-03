@@ -1,4 +1,4 @@
-<p align="center"><img src="http://files.jenius.im/_/NpnfqKD.png" style="max-width: 100%" /></p>
+<p align="center"><img src="https://avatars0.githubusercontent.com/u/20820714" style="max-width: 100%" /></p>
 <hr />
 
 [![npm](https://img.shields.io/npm/v/reshape.svg?style=flat-square)](https://npmjs.com/package/reshape)
