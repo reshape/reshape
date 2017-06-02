@@ -24,7 +24,7 @@
     "ava": "^0.18.0",
     "coveralls": "^2.11.11",
     "matcha": "^0.7.0",
-    "nyc": "^10.1.2",
+    "nyc": "^11.0.2",
     "posthtml-parser": "^0.2.0",
     "posthtml-render": "^1.0.5",
     "reshape-custom-elements": "0.1.0",
