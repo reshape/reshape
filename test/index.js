@@ -6,7 +6,7 @@ const customElements = require('reshape-custom-elements')
 const exp = require('reshape-expressions')
 const sugarml = require('sugarml')
 const posthtmlRender = require('posthtml-render')
-const posthtlParser = require('posthtml-parser')
+const posthtmlParser = require('posthtml-parser')
 const errorPlugin = require('./error_plugin')
 const fixtures = path.join(__dirname, 'fixtures')
 const ReshapeError = reshape.ReshapeError
@@ -27,7 +27,7 @@ test('custom parser', (t) => {
 
 test('custom generator', (t) => {
   return process('basic.html', {
-    parser: posthtlParser,
+    parser: posthtmlParser,
     generator: posthtmlRender
   }).then((res) => {
     t.truthy(res.output.trim() === '<custom>hi</custom>')
@@ -100,19 +100,21 @@ test('plugin error, no plugin name, filename, source', (t) => {
 })
 
 test('plugin error within a plugin', (t) => {
-  let err = process('basic.html', {
+  return process('basic.html', {
     filename: path.join(fixtures, 'basic.html'),
     plugins: [errorPlugin]
+  }).catch((err) => {
+    t.regex(err.toString(), /ReshapePluginError:\sGreetings\snot\spermitted\nFrom\sPlugin:\sNoGreetingsPlugin\nLocation:\n.*reshape\/test\/fixtures\/basic\.html:1:9\n\n>\s1\s|\s<custom>hi<\/custom>\n\s{4}|\s{9}\^\n\s\s2 | \n/)
   })
-  t.throws(err, /ReshapePluginError:\sGreetings\snot\spermitted\nFrom\sPlugin:\sNoGreetingsPlugin\nLocation:\n.*reshape\/test\/fixtures\/basic\.html:1:9\n\n>\s1\s|\s<custom>hi<\/custom>\n\s{4}|\s{9}\^\n\s\s2 | \n/)
 })
 
 test('parser error handled via promise', (t) => {
-  let err = process('sugarml_invalid.html', {
+  return process('sugarml_invalid.html', {
     filename: path.join(fixtures, 'sugarml_invalid.html'),
     parser: sugarml
+  }).catch((err) => {
+    t.regex(err.toString(), /Cannot parse character "<"/)
   })
-  t.throws(err, /Cannot parse character "<"/)
 })
 
 function process (file, config, config2) {
