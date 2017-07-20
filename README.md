@@ -114,7 +114,7 @@ A string of plain text. The `content` property contains the string.
 
 ```js
 {
-  type: 'string',
+  type: 'text',
   content: 'hello world!',
   location: { line: 1, col: 1 }
 }
@@ -129,8 +129,8 @@ An HTML tag. Must have a `name` property with the tag name. Can optionally have 
   type: 'tag',
   name: 'p',
   attrs: {
-    class: [{ type: 'string', content: 'test', line: 1, col: 5 }],
-    'data-foo': [{ type: 'string', content: 'bar', line: 1, col: 18 }],
+    class: [{ type: 'text', content: 'test', line: 1, col: 5 }],
+    'data-foo': [{ type: 'text', content: 'bar', line: 1, col: 18 }],
   },
   content: [/* full ast */],
   location: { line: 1, col: 1 }
@@ -160,8 +160,8 @@ Sometimes there's a situation where you want code to surround some HTML, in orde
     __nodes[1]
   }`,
   nodes: [
-    { type: 'string', content: 'shown!', location: { line: 1, col: 1 } },
-    { type: 'string', content: 'hidden!', location: { line: 2, col: 1 } }
+    { type: 'text', content: 'shown!', location: { line: 1, col: 1 } },
+    { type: 'text', content: 'hidden!', location: { line: 2, col: 1 } }
   ]
 }
 ```
@@ -198,7 +198,7 @@ After processing by the `reshape-expressions` plugin, you would get the followin
     name: 'div',
     attrs: {
       id: [{
-        type: 'string',
+        type: 'text',
         content: 'main',
         location: { line: 1, col: 19}
       }]
@@ -209,7 +209,7 @@ After processing by the `reshape-expressions` plugin, you would get the followin
         name: 'p',
         content: [
           {
-            type: 'string',
+            type: 'text',
             content: 'Hello ',
             location: { line: 2, col: 6 }
           },
