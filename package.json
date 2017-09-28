@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "ava": "^0.21.0",
-    "coveralls": "^2.13.1",
+    "coveralls": "^3.0.0",
     "matcha": "^0.7.0",
     "nyc": "^11.0.3",
     "posthtml-parser": "^0.2.1",
