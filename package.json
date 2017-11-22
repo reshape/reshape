@@ -25,7 +25,7 @@
     "coveralls": "^2.13.1",
     "matcha": "^0.7.0",
     "nyc": "^11.0.3",
-    "posthtml-parser": "^0.2.1",
+    "posthtml-parser": "^0.3.0",
     "posthtml-render": "^1.0.5",
     "reshape-custom-elements": "0.1.0",
     "reshape-expressions": "^0.1.5",
