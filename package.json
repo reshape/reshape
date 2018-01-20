@@ -5,16 +5,14 @@
   "author": "Jeff Escalante",
   "ava": {
     "verbose": "true",
-    "files": [
-      "test/index.js"
-    ]
+    "files": ["test/index.js"]
   },
   "bugs": {
     "url": "https://github.com/reshape/reshape/issues"
   },
   "dependencies": {
     "code-frame": "^5.0.0",
-    "joi": "^13.1.1",
+    "joi": "^12.0.0",
     "lodash.merge": "^4.4.0",
     "reshape-code-gen": "^1.0.0",
     "reshape-parser": "^0.2.1",
@@ -37,17 +35,13 @@
     "node": ">=6"
   },
   "homepage": "https://github.com/reshape/reshape",
-  "keywords": [
-    "html",
-    "parser",
-    "processor",
-    "transform"
-  ],
+  "keywords": ["html", "parser", "processor", "transform"],
   "license": "MIT",
   "main": "lib",
   "repository": "https://github.com/reshape/reshape",
   "scripts": {
-    "coverage": "nyc ava && nyc report --reporter=html && open ./coverage/index.html",
+    "coverage":
+      "nyc ava && nyc report --reporter=html && open ./coverage/index.html",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "lint": "standard | snazzy",
     "test": "npm run lint && nyc ava",
