@@ -14,23 +14,23 @@
   },
   "dependencies": {
     "code-frame": "^5.0.0",
-    "joi": "^10.6.0",
+    "joi": "^13.1.1",
     "lodash.merge": "^4.4.0",
     "reshape-code-gen": "^1.0.0",
     "reshape-parser": "^0.2.1",
     "when": "^3.7.8"
   },
   "devDependencies": {
-    "ava": "^0.21.0",
-    "coveralls": "^2.13.1",
+    "ava": "^0.24.0",
+    "coveralls": "^3.0.0",
     "matcha": "^0.7.0",
-    "nyc": "^11.0.3",
-    "posthtml-parser": "^0.2.1",
-    "posthtml-render": "^1.0.5",
+    "nyc": "^11.4.1",
+    "posthtml-parser": "^0.3.3",
+    "posthtml-render": "^1.1.0",
     "reshape-custom-elements": "0.1.0",
     "reshape-expressions": "^0.1.5",
     "snazzy": "^7.0.0",
-    "standard": "^10.0.2",
+    "standard": "^10.0.3",
     "sugarml": "^0.6.0"
   },
   "engines": {
