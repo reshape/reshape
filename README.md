@@ -116,7 +116,7 @@ A string of plain text. The `content` property contains the string.
 {
   type: 'text',
   content: 'hello world!',
-  location: { line: 1, col: 1 }
+  location: { line: 1, col: 1, startOffset: 1, endOffset: 12 }
 }
 ```
 
@@ -133,7 +133,7 @@ An HTML tag. Must have a `name` property with the tag name. Can optionally have 
     'data-foo': [{ type: 'text', content: 'bar', line: 1, col: 18 }],
   },
   content: [/* full ast */],
-  location: { line: 1, col: 1 }
+  location: { line: 1, col: 1, startOffset: 1, startInnerOffset: 31, endInnerOffset: 31, endOffset: 35 }
 }
 ```
 
@@ -176,6 +176,12 @@ Additionally, all tree nodes should include information about their source, so t
 
 - `line`: the line in the original source
 - `col`: the column in the original source
+- `startOffset`: the zero-based first character index in the original source
+- `endOffset`: the zero-based last character index in the original source
+- `startInnerOffset`: the zero-based first character index within an element in the original source
+- `endInnerOffset`: the zero-based last character index within an element in the original source
+- `innerHTML`: the raw inner content of an element from the original source
+- `outerHTML`: the raw outer content of an element from the original source
 
 There is a strongly encouraged `filename` option available through the [reshape options](#options). This in combination with the `line` and `col` information can provide accurate debugging. However, if the original source comes from a different file, you can also provide a `filename` property on the tree node so that it is accurate. For example, if using `reshape-include` to include code from a different file, this would be necessary.
 
@@ -194,35 +200,80 @@ After processing by the `reshape-expressions` plugin, you would get the followin
 ```js
 [
   {
-    type: 'tag',
-    name: 'div',
-    attrs: {
-      id: [{
-        type: 'text',
-        content: 'main',
-        location: { line: 1, col: 19}
-      }]
+    "type": "tag",
+    "name": "div",
+    "location": {
+      "line": 1,
+      "col": 1,
+      "startOffset": 0,
+      "startInnerOffset": 15,
+      "endInnerOffset": 44,
+      "endOffset": 50,
+      "innerHTML": "\n  <p>Hello {{ planet }}</p>\n",
+      "outerHTML": "<div id='main'>\n  <p>Hello {{ planet }}</p>\n</div>"
     },
-    content: [
-      {
-        type: 'tag',
-        name: 'p',
-        content: [
-          {
-            type: 'text',
-            content: 'Hello ',
-            location: { line: 2, col: 6 }
-          },
-          {
-            type: 'code',
-            content: 'locals.planet',
-            location: { line: 2, col: 13 }
+    "attrs": {
+      "id": [
+        {
+          "type": "text",
+          "content": "main",
+          "location": {
+            "line": 1,
+            "col": 6,
+            "startOffset": 5,
+            "endOffset": 14
           }
-        ],
-        location: { line: 2, col: 3 }
+        }
+      ]
+    },
+    "content": [
+      {
+        "type": "text",
+        "content": "\n  ",
+        "location": {
+          "line": 1,
+          "col": 16,
+          "startOffset": 15,
+          "endOffset": 18
+        }
+      },
+      {
+        "type": "tag",
+        "name": "p",
+        "location": {
+          "line": 2,
+          "col": 3,
+          "startOffset": 18,
+          "startInnerOffset": 21,
+          "endInnerOffset": 39,
+          "endOffset": 43,
+          "innerHTML": "Hello {{ planet }}",
+          "outerHTML": "<p>Hello {{ planet }}</p>"
+        },
+        "content": [
+          {
+            "type": "text",
+            "content": "Hello {{ planet }}",
+            "location": {
+              "line": 2,
+              "col": 6,
+              "startOffset": 21,
+              "endOffset": 39
+            }
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "content": "\n",
+        "location": {
+          "line": 2,
+          "col": 28,
+          "startOffset": 43,
+          "endOffset": 44
+        }
       }
-    ],
-    location: { line: 1, col: 1 }
+    ]
   }
 ]
 ```
