@@ -108,7 +108,7 @@ Here, the default plugins applied to `ph` at the top will apply to all compiles,
 
 Plugins act on an [abstract syntax tree](https://www.wikiwand.com/en/Abstract_syntax_tree) which represents the HTML structure, but is easier to search and modify than plain text. It is a very simple [recursive tree structure](https://www.wikiwand.com/en/Tree_(data_structure)). Each node in the tree is represented by an object, which is required to have a `type` property. The default code generator supports three data types:
 
-#### String
+#### Text
 
 A string of plain text. The `content` property contains the string.
 
@@ -117,6 +117,18 @@ A string of plain text. The `content` property contains the string.
   type: 'text',
   content: 'hello world!',
   location: { line: 1, col: 1, startOffset: 1, endOffset: 12 }
+}
+```
+
+#### Doctype
+
+A document type declaration. The `content` property contains the full contents, same as a text node, but there is no entity escaping for a doctype node.
+
+```js
+{
+  type: 'doctype',
+  content: '<!doctype html>',
+  location: { line: 1, col: 1, startOffset: 1, endOffset: 15 }
 }
 ```
 
