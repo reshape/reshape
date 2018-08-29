@@ -29,7 +29,7 @@
     "posthtml-render": "^1.1.4",
     "reshape-custom-elements": "0.1.0",
     "reshape-expressions": "^0.1.5",
-    "snazzy": "^7.1.1",
+    "snazzy": "^8.0.0",
     "standard": "^11.0.0",
     "sugarml": "^0.6.0"
   },
