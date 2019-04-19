@@ -1,4 +1,4 @@
-module.exports = function (tree, {PluginError}) {
+module.exports = function (tree, { PluginError }) {
   if (tree[0].content[0].content === 'hi') {
     throw new PluginError({
       plugin: 'NoGreetingsPlugin',
