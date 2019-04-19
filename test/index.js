@@ -104,7 +104,8 @@ test('plugin error within a plugin', (t) => {
     filename: path.join(fixtures, 'basic.html'),
     plugins: [errorPlugin]
   }).catch((err) => {
-    t.regex(err.toString(), /ReshapePluginError:\sGreetings\snot\spermitted\nFrom\sPlugin:\sNoGreetingsPlugin\nLocation:\n.*reshape\/test\/fixtures\/basic\.html:1:9\n\n>\s1\s|\s<custom>hi<\/custom>\n\s{4}|\s{9}\^\n\s\s2 | \n/)
+    const msg = err.toString()
+    t.truthy(msg.includes('Greetings not permitted') && msg.includes('NoGreetingsPlugin') && msg.includes('basic.html:1:9'))
   })
 })
 
