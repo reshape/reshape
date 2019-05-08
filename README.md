@@ -16,7 +16,7 @@ Reshape is a tool for transforming HTML with JavaScript plugins. Reshape parses 
 - [Configuration Options](#options)
 - [The Reshape AST](#reshape-ast)
 - [Writing Plugins](#writing-a-plugin)
-- [Plugin Directory](http://plugins.reshape.ml)
+- [Plugin Directory](https://reshape-plugins.netlify.com/)
 - [License, Contributing, Etc](#etc)
 
 ## Installation
@@ -342,7 +342,7 @@ If you are not familiar with the recursion and reduction, we would strongly reco
 
 We also have a handy plugin utility that contains some methods that will help with building plugins. [Check it out](https://github.com/reshape/plugin-util) and feel free to use it while building your plugins!
 
-Finally, when you publish a plugin, make sure to use `reshape-plugin` as an npm keyword so that other users can find it, and so it will be added [to our plugin directory](http://plugins.reshape.ml).
+Finally, when you publish a plugin, make sure to use `reshape-plugin` as an npm keyword so that other users can find it, and so it will be added [to our plugin directory](https://reshape-plugins.netlify.com/).
 
 ### Accessing Options
 
